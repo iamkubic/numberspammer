@@ -1,0 +1,47 @@
+'''
+WARNING - ONLY WORKS WITH NUMBERS
+
+how to use
+> open this script in python IDLE
+> open whatever app you want to type this in as well
+> press F5 to run this
+> Then move your cursor to the text box where you want to type (you have three seconds)
+> Enjoy
+>Press and hold the 'F11' key to stop
+
+'''
+
+from pynput.keyboard import Key, Controller
+import time
+import keyboard as stopper
+
+keyboard = Controller()
+a = int(input("Enter the number you want to start counting from:"))
+timer = abs(float(input("Enter how fast you want to spam (you can use decimals):")))
+
+vibe = 'check'
+
+time.sleep(3)
+
+while vibe == 'check':
+
+    outputter = list(str(a))
+    while outputter:
+        #making pynput actually type in and then press enter
+        keyboard.press(outputter[0])
+        keyboard.release(outputter[0])
+
+        outputter.pop(0)
+
+        #listener a speaker to be added
+        if stopper.is_pressed('f11'):
+            vibe = 'uncheck'
+    
+    a += 1
+
+    keyboard.press(Key.enter)
+    keyboard.release(Key.enter)
+
+    #change the number to adjust speed. You can use decimals as well. Smaller the number, faster the spam.
+    time.sleep(timer)
+    
